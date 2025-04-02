@@ -46,25 +46,3 @@ export const createDiscordRole = async (roleName: string, roleColor?: number): P
     throw error;
   }
 };
-
-/**
- * Get all roles from the Discord server
- * @returns Promise with all roles from the server
- */
-export const getDiscordRoles = async (): Promise<DiscordRole[]> => {
-  try {
-    const response = await axios({
-      method: 'get',
-      url: `https://discord.com/api/v10/guilds/${config.DISCORD_GUILD_ID}/roles`,
-      headers: {
-        'Authorization': `Bot ${config.DISCORD_BOT_TOKEN}`,
-        'Content-Type': 'application/json'
-      }
-    });
-    
-    return response.data as DiscordRole[];
-  } catch (error) {
-    console.error('Error getting Discord roles:', error);
-    throw error;
-  }
-};
